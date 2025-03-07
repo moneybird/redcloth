@@ -6,8 +6,10 @@ source_files = ['redcloth_attributes', 'redcloth_inline', 'redcloth_scan']
 source_files.each do |base|
   if host_cpu =~ /arm64|aarch64/
     File.rename("#{base}_arm64.c", "#{base}.c") if File.exist?("#{base}_arm64.c")
+    File.delete("#{base}_amd64.c") if File.exist?("#{base}_amd64.c")
   else
     File.rename("#{base}_amd64.c", "#{base}.c") if File.exist?("#{base}_amd64.c") 
+    File.delete("#{base}_arm64.c") if File.exist?("#{base}_arm64.c")
   end
 end
 

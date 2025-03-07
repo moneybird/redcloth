@@ -34,7 +34,7 @@ Gem::Specification.new do |s|
   s.files -= Dir['lib/**/*.bundle']
   s.files -= Dir['lib/**/*.so']
 
-  s.files += %w[attributes inline scan].map {|f| "ext/redcloth_scan/redcloth_#{f}.c"}
+  s.files += %w[attributes inline scan].flat_map {|f| ["ext/redcloth_scan/redcloth_#{f}_amd64.c", "ext/redcloth_scan/redcloth_#{f}_arm64.c"] }
   s.files += ["ext/redcloth_scan/redcloth.h"]
   s.extensions = Dir['ext/**/extconf.rb']
 
